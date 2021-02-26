@@ -1,2 +1,2 @@
-# Devil-sTuneForkMod
-Devil's Tune Fork 再現MOD
+# Devil's Tuning Fork Mod
+Devil's Tune Forkの再現MOD

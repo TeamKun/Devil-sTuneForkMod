@@ -1,0 +1,10 @@
+modLoader = "javafml"
+loaderVersion = "[31,)"
+
+[[mods]]
+modId = "devilstunefork"
+version = "${file.jarVersion}"
+displayName = "Devil's Tune Fork Mod"
+credits = "KUN Dev Lab"
+authors = "MORIMORI0317"
+description = "A Ikisugi Devils Tune Fork MOD"
