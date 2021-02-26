@@ -2,7 +2,7 @@ package net.kunmc.lab.dtf.client.renderer;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.kunmc.lab.dtf.client.shader.WaveShader;
+import net.kunmc.lab.dtf.client.shader.TestShader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Matrix4f;
@@ -18,8 +18,8 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL14;
 import org.lwjgl.opengl.GL30;
 
-public class WaveRenderer {
-    private static final WaveRenderer INSTANCE = new WaveRenderer();
+public class TestRenderer {
+    private static final TestRenderer INSTANCE = new TestRenderer();
     private static final JSONBlendingMode RESET_BLEND_STATE = new JSONBlendingMode();
 
     private int depthCopyFbo;
@@ -28,13 +28,13 @@ public class WaveRenderer {
 
     private long currentStart;
 
-    public static WaveRenderer getInstance() {
+    public static TestRenderer getInstance() {
         return INSTANCE;
     }
 
     public void ping(final Vec3d pos) {
         currentStart = System.currentTimeMillis();
-        WaveShader.getInstance().setCenter(pos);
+        TestShader.getInstance().setCenter(pos);
     }
 
     public void onRender(RenderWorldLastEvent e) {
@@ -56,7 +56,7 @@ public class WaveRenderer {
     }
 
     private void deleteDepthCopyFramebuffer() {
-        WaveShader.getInstance().setDepthBuffer(0);
+        TestShader.getInstance().setDepthBuffer(0);
 
         GlStateManager.deleteFramebuffers(depthCopyFbo);
         depthCopyFbo = 0;
@@ -84,7 +84,7 @@ public class WaveRenderer {
         GlStateManager.framebufferTexture2D(FramebufferConstants.GL_FRAMEBUFFER, FramebufferConstants.GL_DEPTH_ATTACHMENT, GL11.GL_TEXTURE_2D, depthCopyDepthBuffer, 0);
         GlStateManager.bindFramebuffer(FramebufferConstants.GL_FRAMEBUFFER, 0);
 
-        WaveShader.getInstance().setDepthBuffer(depthCopyDepthBuffer);
+        TestShader.getInstance().setDepthBuffer(depthCopyDepthBuffer);
     }
 
     private int createTexture(final int width, final int height, final int internalFormat, final int format, final int type) {
@@ -110,26 +110,26 @@ public class WaveRenderer {
 
         final Matrix4f invertedViewMatrix = new Matrix4f(viewMatrix);
         invertedViewMatrix.invert();
-        WaveShader.getInstance().setInverseViewMatrix(invertedViewMatrix);
+        TestShader.getInstance().setInverseViewMatrix(invertedViewMatrix);
 
         Matrix4f invertedProjectionMatrix = new Matrix4f(projectionMatrix);
         invertedProjectionMatrix.invert();
-        WaveShader.getInstance().setInverseProjectionMatrix(invertedProjectionMatrix);
+        TestShader.getInstance().setInverseProjectionMatrix(invertedProjectionMatrix);
 
         Vec3d position = mc.gameRenderer.getActiveRenderInfo().getProjectedView();
-        WaveShader.getInstance().setPosition(position);
+        TestShader.getInstance().setPosition(position);
 
         int adjustedDuration = computeScanGrowthDuration();
         float radius = computeRadius(currentStart, (float) adjustedDuration);
-        WaveShader.getInstance().setRadius(radius);
+        TestShader.getInstance().setRadius(radius);
 
         RESET_BLEND_STATE.apply();
 
-        WaveShader.getInstance().bind();
+        TestShader.getInstance().bind();
 
         blit(framebuffer);
 
-        WaveShader.getInstance().unbind();
+        TestShader.getInstance().unbind();
     }
 
     public int computeScanGrowthDuration() {

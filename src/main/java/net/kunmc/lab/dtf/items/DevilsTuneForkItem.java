@@ -1,6 +1,6 @@
 package net.kunmc.lab.dtf.items;
 
-import net.kunmc.lab.dtf.client.renderer.WaveRenderer;
+import net.kunmc.lab.dtf.client.renderer.TestRenderer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,7 +16,7 @@ public class DevilsTuneForkItem extends Item {
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
         ItemStack itemstack = playerIn.getHeldItem(handIn);
         if (worldIn.isRemote) {
-            WaveRenderer.getInstance().ping(playerIn.getPositionVector());
+            TestRenderer.getInstance().ping(playerIn.getPositionVector());
         }
         return ActionResult.resultConsume(itemstack);
     }

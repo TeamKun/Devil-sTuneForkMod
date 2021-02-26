@@ -13,9 +13,9 @@ import net.minecraftforge.resource.VanillaResourceType;
 
 import java.io.IOException;
 
-public class WaveShader {
+public class TestShader {
     private static final long START_TIME = System.currentTimeMillis();
-    private static final WaveShader INSTANCE = new WaveShader();
+    private static final TestShader INSTANCE = new TestShader();
     protected ShaderInstance shaderInstance;
     protected ShaderDefault timeUniform;
 
@@ -25,7 +25,7 @@ public class WaveShader {
     private ShaderDefault centerUniform;
     private ShaderDefault radiusUniform;
 
-    public static WaveShader getInstance() {
+    public static TestShader getInstance() {
         return INSTANCE;
     }
 
