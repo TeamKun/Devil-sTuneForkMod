@@ -2,6 +2,7 @@ package net.kunmc.lab.dtf;
 
 import net.kunmc.lab.dtf.client.handler.RenderHandler;
 import net.kunmc.lab.dtf.client.shader.TestShader;
+import net.kunmc.lab.dtf.client.shader.WaveShader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -19,5 +20,6 @@ public class DevilsTuneFork {
         MinecraftForge.EVENT_BUS.register(RenderHandler.class);
 
         TestShader.getInstance().init();
+        WaveShader.getInstance().init();
     }
 }
