@@ -3,13 +3,14 @@
 uniform mat4 invViewMat;
 uniform mat4 invProjMat;
 uniform vec3 pos;
-uniform vec3 center;
-uniform float radius;
 uniform float duration;
 uniform sampler2D depthTex;
-uniform float centerX[5];
-uniform float centerY[5];
-uniform float centerZ[5];
+
+uniform float maxRadiuss[300];
+uniform float radiuss[300];
+uniform float centerX[300];
+uniform float centerY[300];
+uniform float centerZ[300];
 
 in vec2 texCoord;
 
@@ -39,10 +40,13 @@ void main() {
 
     float invs=1;
 
-    for (int i = 0; i < 5; i+=1){
+    for (int i = 0; i < 300; i++){
         float dist = distance(pos, vec3(centerX[i], centerY[i], centerZ[i]));
-        if (dist < radius  && dist > radius - 1000 && depth < 1) {
-            invs = radius/30;
+        if (dist < radiuss[i]  && dist > radiuss[i] - 1000 && depth < 1) {
+
+            float ivc=radiuss[i]/maxRadiuss[i];
+            if (invs>ivc)
+            invs =  ivc;
         }
     }
 

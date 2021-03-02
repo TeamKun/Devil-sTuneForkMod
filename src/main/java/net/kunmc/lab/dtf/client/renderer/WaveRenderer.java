@@ -3,6 +3,7 @@ package net.kunmc.lab.dtf.client.renderer;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.kunmc.lab.dtf.client.shader.WaveShader;
+import net.kunmc.lab.dtf.client.wave.Wave;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Matrix4f;
@@ -18,32 +19,38 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL14;
 import org.lwjgl.opengl.GL30;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class WaveRenderer {
     private static final WaveRenderer INSTANCE = new WaveRenderer();
     private static final Minecraft mc = Minecraft.getInstance();
     private static final JSONBlendingMode RESET_BLEND_STATE = new JSONBlendingMode();
-    private long currentStart;
+    private final Map<Integer, Wave> wavs = new HashMap<>();
     private int depthCopyFbo;
     private int depthCopyColorBuffer;
     private int depthCopyDepthBuffer;
-    private boolean on;
 
     public static WaveRenderer getInstance() {
         return INSTANCE;
     }
 
-    public void addWaveTS(Vec3d pos, float size) {
-        currentStart = System.currentTimeMillis();
-        on = true;
-        WaveShader.getInstance().setCenterTS(pos);
+
+    public void addWave(Vec3d pos, float range, float speed) {
+        for (int i = 0; i < 300; i++) {
+            if (!wavs.containsKey(i) || wavs.get(i) == null) {
+                Wave wave = new Wave(pos, range, speed);
+                wave.startWave();
+                WaveShader.getInstance().setCenter(i, pos);
+                WaveShader.getInstance().setMaxRadiuss(i, range);
+                wavs.put(i, wave);
+                return;
+            }
+        }
     }
 
-    /*
-        public void addWave(Vec3d pos, float size) {
-            currentStart = System.currentTimeMillis();
-            WaveShader.getInstance().setCenter(pos);
-        }
-    */
     public void onRender(RenderWorldLastEvent e) {
         if (depthCopyFbo == 0) {
             createDepthCopyFramebuffer();
@@ -54,11 +61,19 @@ public class WaveRenderer {
 
     private void render(Matrix4f viewMatrix, Matrix4f projectionMatrix) {
 
-        float radius = computeRadius(currentStart);
-        if (on || radius > 30) {
-            on = false;
-            radius = 0;
-        }
+        List<Integer> dl = new ArrayList<>();
+        wavs.forEach((n, m) -> {
+            if (!m.isOn())
+                dl.add(n);
+        });
+
+        dl.forEach(n -> {
+            WaveShader.getInstance().removeCenter(n);
+            wavs.remove(n);
+        });
+
+        WaveShader.getInstance().setArrayCenter();
+        WaveShader.getInstance().setArrayMaxRadiuss();
 
         Framebuffer framebuffer = mc.getFramebuffer();
 
@@ -76,7 +91,10 @@ public class WaveRenderer {
         Vec3d position = mc.gameRenderer.getActiveRenderInfo().getProjectedView();
         WaveShader.getInstance().setPosition(position);
 
-        WaveShader.getInstance().setRadius(radius);
+        wavs.forEach((m, n) -> WaveShader.getInstance().setRadiuss(m, n.getRadius()));
+
+        WaveShader.getInstance().setArrayRadiuss();
+
         RESET_BLEND_STATE.apply();
 
         WaveShader.getInstance().bind();

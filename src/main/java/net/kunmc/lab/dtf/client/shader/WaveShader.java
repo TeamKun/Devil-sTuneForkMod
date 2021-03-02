@@ -22,12 +22,18 @@ public class WaveShader {
     private ShaderDefault inverseViewMatrixUniform;
     private ShaderDefault inverseProjectionMatrixUniform;
     private ShaderDefault positionUniform;
-    private ShaderDefault centerUniform;
-    private ShaderDefault radiusUniform;
 
     private ShaderDefault centerUniformX;
     private ShaderDefault centerUniformY;
     private ShaderDefault centerUniformZ;
+    private ShaderDefault radiussUniform;
+    private ShaderDefault maxRadiussUniform;
+
+    private float[] wavesX = new float[300];
+    private float[] wavesY = new float[300];
+    private float[] wavesZ = new float[300];
+    private float[] radiuss = new float[300];
+    private float[] maxRadiuss = new float[300];
 
     public static WaveShader getInstance() {
         return INSTANCE;
@@ -78,13 +84,13 @@ public class WaveShader {
         inverseViewMatrixUniform = shaderInstance.getShaderUniform("invViewMat");
         inverseProjectionMatrixUniform = shaderInstance.getShaderUniform("invProjMat");
         positionUniform = shaderInstance.getShaderUniform("pos");
-        centerUniform = shaderInstance.getShaderUniform("center");
-        radiusUniform = shaderInstance.getShaderUniform("radius");
 
 
         centerUniformX = shaderInstance.getShaderUniform("centerX");
         centerUniformY = shaderInstance.getShaderUniform("centerY");
         centerUniformZ = shaderInstance.getShaderUniform("centerZ");
+        radiussUniform = shaderInstance.getShaderUniform("radiuss");
+        maxRadiussUniform = shaderInstance.getShaderUniform("maxRadiuss");
     }
 
 
@@ -100,20 +106,46 @@ public class WaveShader {
         positionUniform.set((float) value.getX(), (float) value.getY(), (float) value.getZ());
     }
 
-    /*
-        public void setCenter(Vec3d value) {
-            centerUniform.set((float) value.getX(), (float) value.getY(), (float) value.getZ());
-        }
-    */
-    public void setCenterTS(Vec3d value) {
-        centerUniformX.set(new float[]{(float) value.x, 114514f, 0f, 0f, 0f});
-        centerUniformY.set(new float[]{(float) value.y, 5f, 0f, 0f, 0f});
-        centerUniformZ.set(new float[]{(float) value.z, 114514f, 0f, 0f, 0f});
-        //   setCenter(value);
+    public void setCenter(int num, Vec3d value) {
+
+        if (wavesX.length < num)
+            return;
+
+        wavesX[num] = (float) value.getX();
+        wavesY[num] = (float) value.getY();
+        wavesZ[num] = (float) value.getZ();
     }
 
-    public void setRadius(final float value) {
-        radiusUniform.set(value);
+    public void removeCenter(int num) {
+        if (wavesX.length < num)
+            return;
+        wavesX[num] = 0;
+        wavesY[num] = 0;
+        wavesZ[num] = 0;
+    }
+
+    public void setArrayCenter() {
+        centerUniformX.set(wavesX);
+        centerUniformY.set(wavesY);
+        centerUniformZ.set(wavesZ);
+    }
+
+    public void setMaxRadiuss(int num, float value) {
+        if (maxRadiuss.length < num)
+            return;
+        maxRadiuss[num] = value;
+    }
+    public void setArrayMaxRadiuss() {
+        maxRadiussUniform.set(maxRadiuss);
+    }
+    public void setRadiuss(int num, float value) {
+        if (radiuss.length < num)
+            return;
+        radiuss[num] = value;
+    }
+
+    public void setArrayRadiuss() {
+        radiussUniform.set(radiuss);
     }
 
     public void setDepthBuffer(final int buffer) {
