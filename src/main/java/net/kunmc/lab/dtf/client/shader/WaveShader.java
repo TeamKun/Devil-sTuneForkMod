@@ -25,6 +25,10 @@ public class WaveShader {
     private ShaderDefault centerUniform;
     private ShaderDefault radiusUniform;
 
+    private ShaderDefault centerUniformX;
+    private ShaderDefault centerUniformY;
+    private ShaderDefault centerUniformZ;
+
     public static WaveShader getInstance() {
         return INSTANCE;
     }
@@ -76,6 +80,11 @@ public class WaveShader {
         positionUniform = shaderInstance.getShaderUniform("pos");
         centerUniform = shaderInstance.getShaderUniform("center");
         radiusUniform = shaderInstance.getShaderUniform("radius");
+
+
+        centerUniformX = shaderInstance.getShaderUniform("centerX");
+        centerUniformY = shaderInstance.getShaderUniform("centerY");
+        centerUniformZ = shaderInstance.getShaderUniform("centerZ");
     }
 
 
@@ -91,8 +100,16 @@ public class WaveShader {
         positionUniform.set((float) value.getX(), (float) value.getY(), (float) value.getZ());
     }
 
-    public void setCenter(final Vec3d value) {
-        centerUniform.set((float) value.getX(), (float) value.getY(), (float) value.getZ());
+    /*
+        public void setCenter(Vec3d value) {
+            centerUniform.set((float) value.getX(), (float) value.getY(), (float) value.getZ());
+        }
+    */
+    public void setCenterTS(Vec3d value) {
+        centerUniformX.set(new float[]{(float) value.x, 114514f, 0f, 0f, 0f});
+        centerUniformY.set(new float[]{(float) value.y, 5f, 0f, 0f, 0f});
+        centerUniformZ.set(new float[]{(float) value.z, 114514f, 0f, 0f, 0f});
+        //   setCenter(value);
     }
 
     public void setRadius(final float value) {

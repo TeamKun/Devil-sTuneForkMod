@@ -26,29 +26,39 @@ public class WaveRenderer {
     private int depthCopyFbo;
     private int depthCopyColorBuffer;
     private int depthCopyDepthBuffer;
+    private boolean on;
 
     public static WaveRenderer getInstance() {
         return INSTANCE;
     }
 
-    public void addWave(final Vec3d pos) {
+    public void addWaveTS(Vec3d pos, float size) {
         currentStart = System.currentTimeMillis();
-        WaveShader.getInstance().setCenter(pos);
+        on = true;
+        WaveShader.getInstance().setCenterTS(pos);
     }
 
+    /*
+        public void addWave(Vec3d pos, float size) {
+            currentStart = System.currentTimeMillis();
+            WaveShader.getInstance().setCenter(pos);
+        }
+    */
     public void onRender(RenderWorldLastEvent e) {
-        int waveSize = 3000;
-        boolean shouldRender = currentStart > 0 && waveSize > (int) (System.currentTimeMillis() - currentStart);
-
         if (depthCopyFbo == 0) {
             createDepthCopyFramebuffer();
         }
         render(e.getMatrixStack().getLast().getMatrix(), e.getProjectionMatrix());
-
     }
 
 
     private void render(Matrix4f viewMatrix, Matrix4f projectionMatrix) {
+
+        float radius = computeRadius(currentStart);
+        if (on || radius > 30) {
+            on = false;
+            radius = 0;
+        }
 
         Framebuffer framebuffer = mc.getFramebuffer();
 
@@ -66,11 +76,7 @@ public class WaveRenderer {
         Vec3d position = mc.gameRenderer.getActiveRenderInfo().getProjectedView();
         WaveShader.getInstance().setPosition(position);
 
-        float radius = computeRadius(currentStart);
-
         WaveShader.getInstance().setRadius(radius);
-
-
         RESET_BLEND_STATE.apply();
 
         WaveShader.getInstance().bind();
@@ -191,54 +197,3 @@ public class WaveRenderer {
         return texture;
     }
 }
-/*
-
-    public void render(Matrix4f viewMatrix, Matrix4f projectionMatrix) {
-
-        int waveSize = 100;
-
-        boolean shouldRender = currentStart > 0 && waveSize > (int) (System.currentTimeMillis() - currentStart);
-
-
-        shouldRender = true;
-
-        if (shouldRender) {
-            if (depthCopyFbo == 0) {
-                createDepthCopyFramebuffer();
-            }
-
-        } else {
-            if (depthCopyFbo != 0) {
-                deleteDepthCopyFramebuffer();
-            }
-
-            currentStart = 0;
-            return;
-        }
-        Framebuffer framebuffer = mc.getFramebuffer();
-
-        updateDepthTexture(framebuffer);
-
-        Matrix4f invertedViewMatrix = new Matrix4f(viewMatrix);
-        invertedViewMatrix.invert();
-        WaveShader.getInstance().setInverseViewMatrix(invertedViewMatrix);
-
-        Matrix4f invertedProjectionMatrix = new Matrix4f(projectionMatrix);
-        invertedProjectionMatrix.invert();
-        WaveShader.getInstance().setInverseProjectionMatrix(invertedProjectionMatrix);
-
-        Vec3d position = mc.gameRenderer.getActiveRenderInfo().getProjectedView();
-        WaveShader.getInstance().setPosition(position);
-
-        float radius = computeRadius(currentStart);
-        WaveShader.getInstance().setRadius(radius);
-
-        RESET_BLEND_STATE.apply();
-
-        WaveShader.getInstance().bind();
-
-        blit(framebuffer);
-
-        WaveShader.getInstance().unbind();
-    }
- */

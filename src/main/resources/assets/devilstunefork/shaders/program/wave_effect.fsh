@@ -7,10 +7,12 @@ uniform vec3 center;
 uniform float radius;
 uniform float duration;
 uniform sampler2D depthTex;
+uniform float centerX[5];
+uniform float centerY[5];
+uniform float centerZ[5];
 
 in vec2 texCoord;
 
-const float width = 1000;
 const float sharpness = 10;
 const vec4 outerColor = vec4(0.8, 1.0, 0.9, 1.0);
 const vec4 midColor = vec4(0.4, 0.5, 0.7, 1.0);
@@ -32,16 +34,17 @@ vec3 worldpos(float depth) {
 }
 
 void main() {
-    vec4 color = vec4(0, 0, 0, 0);
-
     float depth = texture2D(depthTex, texCoord).r;
     vec3 pos = worldpos(depth);
-    float dist = distance(pos, center);
-    if (dist < radius && dist > radius - width && depth < 1) {
-        color = vec4(1, 1, 1, 1);
-        color *= radius/60;//36
-    } else {
-        color = vec4(1, 1, 1, 1);
+
+    float invs=1;
+
+    for (int i = 0; i < 5; i+=1){
+        float dist = distance(pos, vec3(centerX[i], centerY[i], centerZ[i]));
+        if (dist < radius  && dist > radius - 1000 && depth < 1) {
+            invs = radius/30;
+        }
     }
-    gl_FragColor = color;
+
+    gl_FragColor = vec4(invs, invs, invs, invs);;
 }
