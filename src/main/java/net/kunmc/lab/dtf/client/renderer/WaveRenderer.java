@@ -69,6 +69,7 @@ public class WaveRenderer {
 
         dl.forEach(n -> {
             WaveShader.getInstance().removeCenter(n);
+            WaveShader.getInstance().removeMaxRadiuss(n);
             wavs.remove(n);
         });
 

@@ -135,6 +135,12 @@ public class WaveShader {
             return;
         maxRadiuss[num] = value;
     }
+    public void removeMaxRadiuss(int num) {
+        if (maxRadiuss.length < num)
+            return;
+        maxRadiuss[num] = 0;
+    }
+
     public void setArrayMaxRadiuss() {
         maxRadiussUniform.set(maxRadiuss);
     }

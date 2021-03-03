@@ -22,7 +22,7 @@ public class WaveMessage {
     public static void encodeMessege(WaveMessage messegeIn, PacketBuffer buffer) {
         buffer.writeDouble(messegeIn.possion.getX());
         buffer.writeDouble(messegeIn.possion.getY());
-        buffer.writeDouble(messegeIn.possion.getX());
+        buffer.writeDouble(messegeIn.possion.getZ());
         buffer.writeFloat(messegeIn.range);
         buffer.writeFloat(messegeIn.speed);
     }
