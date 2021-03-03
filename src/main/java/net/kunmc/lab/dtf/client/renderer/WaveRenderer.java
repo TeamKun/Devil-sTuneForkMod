@@ -29,7 +29,7 @@ public class WaveRenderer {
     private static final Minecraft mc = Minecraft.getInstance();
     private static final JSONBlendingMode RESET_BLEND_STATE = new JSONBlendingMode();
     private final Map<Integer, Wave> wavs = new HashMap<>();
-    private int depthCopyFbo;
+    public int depthCopyFbo;
     private int depthCopyColorBuffer;
     private int depthCopyDepthBuffer;
 
@@ -150,27 +150,13 @@ public class WaveRenderer {
         RenderSystem.popMatrix();
     }
 
-    public float computeRadius(final long start) {
-
-        final float r1 = Minecraft.getInstance().gameRenderer.getFarPlaneDistance();
-        final float t1 = 5000;
-        final float b = 200;
-        final float n = 1f / ((t1 + b) * (t1 + b) - b * b);
-        final float a = -r1 * b * b * n;
-        final float c = r1 * n;
-
-        final float t = (float) (System.currentTimeMillis() - start);
-
-        return a + (t + b) * (t + b) * c;
-    }
-
     private void updateDepthTexture(final Framebuffer framebuffer) {
         GlStateManager.bindFramebuffer(GL30.GL_READ_FRAMEBUFFER, framebuffer.framebufferObject);
         GlStateManager.bindFramebuffer(GL30.GL_DRAW_FRAMEBUFFER, depthCopyFbo);
         GL30.glBlitFramebuffer(0, 0, framebuffer.framebufferTextureWidth, framebuffer.framebufferTextureHeight, 0, 0, framebuffer.framebufferTextureWidth, framebuffer.framebufferTextureHeight, GL30.GL_DEPTH_BUFFER_BIT, GL30.GL_NEAREST);
     }
 
-    private void deleteDepthCopyFramebuffer() {
+    public void deleteDepthCopyFramebuffer() {
         WaveShader.getInstance().setDepthBuffer(0);
 
         GlStateManager.deleteFramebuffers(depthCopyFbo);

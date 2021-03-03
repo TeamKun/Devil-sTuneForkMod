@@ -50,5 +50,5 @@ void main() {
         }
     }
 
-    gl_FragColor = vec4(invs, invs, invs, invs);;
+    gl_FragColor = vec4(1-invs, 1-invs, 1-invs, 1);
 }

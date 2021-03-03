@@ -11,10 +11,6 @@ public class ClientHandler {
 
     @SubscribeEvent
     public static void onPlaySoundEvent(SoundEvent.SoundSourceEvent e) {
-
-
-        // if (e.getName().contains("explode")) {
-        WaveRenderer.getInstance().addWave(new Vec3d(e.getSound().getX(), e.getSound().getY(), e.getSound().getZ()), e.getSound().getVolume()*3, 30);
-        //  }
+        WaveRenderer.getInstance().addWave(new Vec3d(e.getSound().getX(), e.getSound().getY(), e.getSound().getZ()), e.getSound().getVolume() * 10, e.getSound().getPitch());
     }
 }

@@ -38,7 +38,7 @@ public class Wave {
             return 0;
 
         final float r1 = Minecraft.getInstance().gameRenderer.getFarPlaneDistance();
-        final float t1 = 5000;
+        final float t1 = 5000 ;//* (speed / 30);
         final float b = 200;
         final float n = 1f / ((t1 + b) * (t1 + b) - b * b);
         final float a = -r1 * b * b * n;

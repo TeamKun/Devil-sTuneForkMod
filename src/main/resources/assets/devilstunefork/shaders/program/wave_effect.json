@@ -1,8 +1,8 @@
 {
   "blend": {
     "func": "add",
-    "srcrgb": "one",
-    "dstrgb": "one"
+    "srcrgb": "zero",
+    "dstrgb": "src_color"
   },
   "vertex": "devilstunefork:wave_effect",
   "fragment": "devilstunefork:wave_effect",

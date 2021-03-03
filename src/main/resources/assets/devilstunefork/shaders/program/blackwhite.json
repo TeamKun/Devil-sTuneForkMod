@@ -4,8 +4,8 @@
         "srcrgb": "one",
         "dstrgb": "zero"
     },
-    "vertex": "devilstunefork:test",
-    "fragment": "devilstunefork:test",
+    "vertex": "devilstunefork:blackwhite",
+    "fragment": "devilstunefork:blackwhite",
     "attributes": [ "Position" ],
     "samplers": [
         { "name": "DiffuseSampler" }

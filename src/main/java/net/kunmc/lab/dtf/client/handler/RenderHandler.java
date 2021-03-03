@@ -9,15 +9,15 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class RenderHandler {
     private static final Minecraft mc = Minecraft.getInstance();
-    private static final ResourceLocation blackshader = new ResourceLocation(DevilsTuneFork.MODID, "shaders/post/test.json");
+    private static final ResourceLocation blackshader = new ResourceLocation(DevilsTuneFork.MODID, "shaders/post/test1.json");
 
     @SubscribeEvent
     public static void onWorldRender(RenderWorldLastEvent e) {
         WaveRenderer.getInstance().onRender(e);
 
-        if (mc.gameRenderer.getShaderGroup() == null || !mc.gameRenderer.getShaderGroup().getShaderGroupName().equals(blackshader.toString())) {
-            mc.gameRenderer.loadShader(blackshader);
-        }
+      //  if (mc.gameRenderer.getShaderGroup() == null || !mc.gameRenderer.getShaderGroup().getShaderGroupName().equals(blackshader.toString())) {
+      //      mc.gameRenderer.loadShader(blackshader);
+       // }
     }
 
 }
