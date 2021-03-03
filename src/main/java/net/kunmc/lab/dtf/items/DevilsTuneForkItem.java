@@ -27,6 +27,6 @@ public class DevilsTuneForkItem extends Item {
             worldIn.playSound(null, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), SoundEvents.BLOCK_BELL_USE, SoundCategory.NEUTRAL, 0.5F, 0.1F / (random.nextFloat() * 0.4F + 0.8F));
             playerIn.getCooldownTracker().setCooldown(this, 20 * 4);
         }
-        return ActionResult.resultConsume(itemstack);
+        return ActionResult.resultSuccess(itemstack);
     }
 }
