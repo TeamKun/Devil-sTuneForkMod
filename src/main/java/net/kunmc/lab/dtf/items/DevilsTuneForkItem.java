@@ -22,8 +22,8 @@ public class DevilsTuneForkItem extends Item {
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
         ItemStack itemstack = playerIn.getHeldItem(handIn);
         if (!worldIn.isRemote) {
-            Chunk ch = (Chunk) playerIn.world.getChunk(playerIn.getPosition());
-            PacketHandler.INSTANCE.send(PacketDistributor.TRACKING_CHUNK.with(() -> ch), new WaveMessage(playerIn.getPositionVector(), 50, 1));
+       //     Chunk ch = (Chunk) playerIn.world.getChunk(playerIn.getPosition());
+        //    PacketHandler.INSTANCE.send(PacketDistributor.TRACKING_CHUNK.with(() -> ch), new WaveMessage(playerIn.getPositionVector(), 50, 1));
             worldIn.playSound(null, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), SoundEvents.BLOCK_BELL_USE, SoundCategory.NEUTRAL, 0.5F, 0.1F / (random.nextFloat() * 0.4F + 0.8F));
             playerIn.getCooldownTracker().setCooldown(this, 20 * 4);
         }

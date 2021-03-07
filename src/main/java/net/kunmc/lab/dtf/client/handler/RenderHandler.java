@@ -2,6 +2,7 @@ package net.kunmc.lab.dtf.client.handler;
 
 import net.kunmc.lab.dtf.DevilsTuneFork;
 import net.kunmc.lab.dtf.client.renderer.WaveRenderer;
+import net.kunmc.lab.dtf.client.renderer.WhiteLineRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
@@ -13,11 +14,11 @@ public class RenderHandler {
 
     @SubscribeEvent
     public static void onWorldRender(RenderWorldLastEvent e) {
+        WhiteLineRenderer.getInstance().onRender(e);
         WaveRenderer.getInstance().onRender(e);
-
-      //  if (mc.gameRenderer.getShaderGroup() == null || !mc.gameRenderer.getShaderGroup().getShaderGroupName().equals(blackshader.toString())) {
-      //      mc.gameRenderer.loadShader(blackshader);
-       // }
+        //  if (mc.gameRenderer.getShaderGroup() == null || !mc.gameRenderer.getShaderGroup().getShaderGroupName().equals(blackshader.toString())) {
+        //      mc.gameRenderer.loadShader(blackshader);
+        // }
     }
 
 }
