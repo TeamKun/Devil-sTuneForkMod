@@ -44,7 +44,7 @@ void main() {
         float dist = distance(pos, vec3(centerX[i], centerY[i], centerZ[i]));
         if (dist < radiuss[i]  && dist > radiuss[i] - 1000 && depth < 1) {
 
-            float ivc=radiuss[i]/maxRadiuss[i];
+            float ivc=radiuss[i]/maxRadiuss[i]/(max((dist/ radiuss[i]), 0)*1.3);
             if (invs>ivc)
             invs =  ivc;
         }

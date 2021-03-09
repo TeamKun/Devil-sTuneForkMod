@@ -43,7 +43,8 @@ void main() {
     for (int i = 0; i < 300; i++){
         float dist = distance(pos, vec3(centerX[i], centerY[i], centerZ[i]));
         float ivc=radiuss[i]/maxRadiuss[i];
-        if (dist < radiuss[i]  && dist > radiuss[i] - maxRadiuss[i]/250 && depth < 1&&ivc>0) {
+        float maxDist=radiuss[i] - min(maxRadiuss[i], 400)/250;
+        if (dist < radiuss[i]  && dist > maxDist && depth < 1&&ivc>0) {
             invs =  1;
         }
     }
