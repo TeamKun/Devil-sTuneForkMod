@@ -39,7 +39,7 @@ void main() {
     vec3 pos = worldpos(depth);
 
     float invs=0;
-    float whiteInv=1;
+    float whiteInv=0;
 
     for (int i = 0; i < 300; i++){
         float dist = distance(pos, vec3(centerX[i], centerY[i], centerZ[i]));
@@ -49,10 +49,10 @@ void main() {
             invs =  1;
             float sa=radiuss[i]-maxDist;
             float cs=dist-maxDist;
-            float cWI=min(max((cs/sa)*1.1, 0.3), 1);
-            if (whiteInv > cWI){
-                whiteInv=cWI;
-            }
+            float cWI=min(max((cs/sa)*1.1, 0.2), 1);
+            //   if (whiteInv > cWI){
+            whiteInv=cWI;
+            //   }
         }
     }
 
