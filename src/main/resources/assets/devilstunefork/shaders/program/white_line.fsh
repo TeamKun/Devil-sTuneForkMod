@@ -39,15 +39,22 @@ void main() {
     vec3 pos = worldpos(depth);
 
     float invs=0;
+    float whiteInv=1;
 
     for (int i = 0; i < 300; i++){
         float dist = distance(pos, vec3(centerX[i], centerY[i], centerZ[i]));
         float ivc=radiuss[i]/maxRadiuss[i];
-        float maxDist=radiuss[i] - min(maxRadiuss[i], 400)/250;
+        float maxDist=radiuss[i] - min(maxRadiuss[i], 400)/125;
         if (dist < radiuss[i]  && dist > maxDist && depth < 1&&ivc>0) {
             invs =  1;
+            float sa=radiuss[i]-maxDist;
+            float cs=dist-maxDist;
+            float cWI=min(max((cs/sa)*1.1, 0.3), 1);
+            if (whiteInv > cWI){
+                whiteInv=cWI;
+            }
         }
     }
 
-    gl_FragColor = vec4(1, 1, 1, invs);
+    gl_FragColor = vec4(whiteInv, whiteInv, whiteInv, invs);
 }
