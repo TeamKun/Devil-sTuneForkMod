@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "devilstunefork.refmap.json",
   "client": [
+    "DebugOverlayGuiMixin",
     "MinecraftMixin"
   ],
   "injectors": {

@@ -12,6 +12,7 @@ import net.minecraftforge.resource.ISelectiveResourceReloadListener;
 import net.minecraftforge.resource.VanillaResourceType;
 
 import java.io.IOException;
+import java.util.stream.IntStream;
 
 public class WaveShader {
     private static final long START_TIME = System.currentTimeMillis();
@@ -37,6 +38,19 @@ public class WaveShader {
 
     public static WaveShader getInstance() {
         return INSTANCE;
+    }
+
+    public int maxCont() {
+        return wavesX.length;
+    }
+
+    public int currentCont() {
+        int ct = 0;
+        for (float x : wavesX) {
+            if (x != 0)
+                ct++;
+        }
+        return ct;
     }
 
     public void init() {
@@ -135,15 +149,25 @@ public class WaveShader {
             return;
         maxRadiuss[num] = value;
     }
+
     public void removeMaxRadiuss(int num) {
         if (maxRadiuss.length < num)
             return;
         maxRadiuss[num] = 0;
     }
 
+    public void removeAll() {
+        IntStream.range(0, 300).forEach(n -> {
+            removeMaxRadiuss(n);
+            removeCenter(n);
+            setRadiuss(n, 0);
+        });
+    }
+
     public void setArrayMaxRadiuss() {
         maxRadiussUniform.set(maxRadiuss);
     }
+
     public void setRadiuss(int num, float value) {
         if (radiuss.length < num)
             return;

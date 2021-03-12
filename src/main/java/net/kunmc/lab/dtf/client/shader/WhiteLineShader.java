@@ -12,6 +12,7 @@ import net.minecraftforge.resource.ISelectiveResourceReloadListener;
 import net.minecraftforge.resource.VanillaResourceType;
 
 import java.io.IOException;
+import java.util.stream.IntStream;
 
 public class WhiteLineShader {
     private static final long START_TIME = System.currentTimeMillis();
@@ -38,7 +39,13 @@ public class WhiteLineShader {
     public static WhiteLineShader getInstance() {
         return INSTANCE;
     }
-
+    public void removeAll() {
+        IntStream.range(0, 300).forEach(n -> {
+            removeMaxRadiuss(n);
+            removeCenter(n);
+            setRadiuss(n, 0);
+        });
+    }
     public void init() {
         IResourceManager resourceManager = Minecraft.getInstance().getResourceManager();
         Minecraft.getInstance().deferTask(() -> reloadShaders(resourceManager));
