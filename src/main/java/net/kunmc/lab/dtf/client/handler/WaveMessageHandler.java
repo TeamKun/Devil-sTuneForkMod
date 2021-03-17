@@ -10,7 +10,7 @@ import java.util.function.Supplier;
 public class WaveMessageHandler {
     public static void reversiveMessage(WaveMessage message, Supplier<NetworkEvent.Context> ctx) {
         ctx.get().setPacketHandled(true);
-        WhiteLineRenderer.getInstance().addWave(message.possion, message.range, message.speed);
-        WaveRenderer.getInstance().addWave(message.possion, message.range, message.speed);
+        WhiteLineRenderer.getInstance().addWave(message.possion, message.range * 10, Math.max(message.speed, 0.7f));
+        WaveRenderer.getInstance().addWave(message.possion, message.range * 10, Math.max(message.speed, 0.7f));
     }
 }

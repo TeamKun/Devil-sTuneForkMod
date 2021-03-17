@@ -1,11 +1,14 @@
 {
   "required": true,
-  "package": "net.kunmc.lab.dtf.client.mixin",
+  "package": "net.kunmc.lab.dtf.mixin",
   "compatibilityLevel": "JAVA_8",
   "refmap": "devilstunefork.refmap.json",
+  "mixins": [
+    "WorldMixin"
+  ],
   "client": [
-    "DebugOverlayGuiMixin",
-    "MinecraftMixin"
+    "client.DebugOverlayGuiMixin",
+    "client.MinecraftMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -1,9 +1,8 @@
-package net.kunmc.lab.dtf.client.mixin;
+package net.kunmc.lab.dtf.mixin.client;
 
 import net.kunmc.lab.dtf.client.renderer.WaveRenderer;
 import net.kunmc.lab.dtf.client.renderer.WhiteLineRenderer;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.OverlayRenderer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

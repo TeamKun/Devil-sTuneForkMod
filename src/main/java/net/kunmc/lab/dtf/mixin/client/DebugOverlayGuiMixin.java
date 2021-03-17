@@ -1,4 +1,4 @@
-package net.kunmc.lab.dtf.client.mixin;
+package net.kunmc.lab.dtf.mixin.client;
 
 import net.kunmc.lab.dtf.client.shader.WaveShader;
 import net.minecraft.client.gui.overlay.DebugOverlayGui;

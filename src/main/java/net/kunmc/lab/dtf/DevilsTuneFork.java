@@ -22,6 +22,7 @@ public class DevilsTuneFork {
 
     private void setup(final FMLCommonSetupEvent event) {
         PacketHandler.init();
+   //     MinecraftForge.EVENT_BUS.register(ServerHandler.class);
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
