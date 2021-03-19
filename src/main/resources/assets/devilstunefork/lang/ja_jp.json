@@ -1,5 +1,10 @@
 {
-    "_comment.i": "item",
-    "item.devilstunefork.devilstunefork": "悪魔の音叉",
-    "_comment.l": "last"
-  }
+  "_comment.i": "item",
+  "item.devilstunefork.devilstunefork": "悪魔の音叉",
+  "_comment.c": "command",
+  "commands.dtf.setactive.true": "DTF MODを有効にしました",
+  "commands.dtf.setactive.false": "DTF MODを無効にしました",
+  "commands.dtf.showactive.true": "DTF MODは有効です",
+  "commands.dtf.showactive.false": "DTF MODは無効です",
+  "_comment.l": "last"
+}

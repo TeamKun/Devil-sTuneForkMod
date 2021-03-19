@@ -4,6 +4,8 @@ import net.kunmc.lab.dtf.client.handler.ClientHandler;
 import net.kunmc.lab.dtf.client.handler.RenderHandler;
 import net.kunmc.lab.dtf.client.shader.WaveShader;
 import net.kunmc.lab.dtf.client.shader.WhiteLineShader;
+import net.kunmc.lab.dtf.config.ServerConfig;
+import net.kunmc.lab.dtf.handler.ServerHandler;
 import net.kunmc.lab.dtf.packet.PacketHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -18,11 +20,12 @@ public class DevilsTuneFork {
     public DevilsTuneFork() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
+        ServerConfig.init();
     }
 
     private void setup(final FMLCommonSetupEvent event) {
         PacketHandler.init();
-   //     MinecraftForge.EVENT_BUS.register(ServerHandler.class);
+        MinecraftForge.EVENT_BUS.register(ServerHandler.class);
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {

@@ -1,7 +1,9 @@
 package net.kunmc.lab.dtf.packet;
 
 import net.kunmc.lab.dtf.DevilsTuneFork;
+import net.kunmc.lab.dtf.client.handler.WaveActiveMessageHandler;
 import net.kunmc.lab.dtf.client.handler.WaveMessageHandler;
+import net.kunmc.lab.dtf.config.ServerConfig;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -23,10 +25,11 @@ public class PacketHandler {
 
     public static void init() {
         INSTANCE.registerMessage(next(), WaveMessage.class, WaveMessage::encodeMessege, WaveMessage::decodeMessege, WaveMessageHandler::reversiveMessage);
+        INSTANCE.registerMessage(next(), WaveActiveMessage.class, WaveActiveMessage::encodeMessege, WaveActiveMessage::decodeMessege, WaveActiveMessageHandler::reversiveMessage);
     }
 
     public static void sendWave(World world, Vec3d pos, float range, float speed) {
-        if (!world.isRemote) {
+        if (!world.isRemote && ServerConfig.Active.get()) {
             Chunk ch = (Chunk) world.getChunk(new BlockPos(pos));
             PacketHandler.INSTANCE.send(PacketDistributor.TRACKING_CHUNK.with(() -> ch), new WaveMessage(pos, range, speed));
         }

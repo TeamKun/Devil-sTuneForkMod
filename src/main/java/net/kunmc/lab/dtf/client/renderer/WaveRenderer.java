@@ -201,4 +201,10 @@ public class WaveRenderer {
         GlStateManager.bindTexture(0);
         return texture;
     }
+
+    public void waveing(Vec3d pos, float range, float speed) {
+        addWave(pos, range, speed);
+        WhiteLineRenderer.getInstance().addWave(pos, range, speed);
+    }
+
 }
