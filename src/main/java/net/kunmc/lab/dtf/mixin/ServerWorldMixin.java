@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class ServerWorldMixin {
     @Inject(method = "playSound(Lnet/minecraft/entity/player/PlayerEntity;DDDLnet/minecraft/util/SoundEvent;Lnet/minecraft/util/SoundCategory;FF)V", at = @At("HEAD"))
     private void playSound(PlayerEntity player, double x, double y, double z, SoundEvent soundIn, SoundCategory category, float volume, float pitch, CallbackInfo ci) {
-        if (!soundIn.getName().getNamespace().equals(DevilsTuneFork.MODID)) {
+        if (!soundIn.name.getNamespace().equals(DevilsTuneFork.MODID)) {
             PacketHandler.sendWave((ServerWorld) (Object) this, new Vec3d(x, y, z), volume, pitch);
         }
     }
