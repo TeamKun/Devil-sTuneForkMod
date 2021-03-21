@@ -29,9 +29,13 @@ public class PacketHandler {
     }
 
     public static void sendWave(World world, Vec3d pos, float range, float speed) {
+        sendWave(world, pos, range, speed, false);
+    }
+
+    public static void sendWave(World world, Vec3d pos, float range, float speed, boolean nat) {
         if (!world.isRemote && ServerConfig.Active.get()) {
             Chunk ch = (Chunk) world.getChunk(new BlockPos(pos));
-            PacketHandler.INSTANCE.send(PacketDistributor.TRACKING_CHUNK.with(() -> ch), new WaveMessage(pos, range, speed));
+            PacketHandler.INSTANCE.send(PacketDistributor.TRACKING_CHUNK.with(() -> ch), new WaveMessage(pos, range, speed, nat));
         }
     }
 }

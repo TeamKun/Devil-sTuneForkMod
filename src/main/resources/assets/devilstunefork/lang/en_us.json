@@ -6,5 +6,7 @@
   "commands.dtf.setactive.false": "DTF MOD is now set to not active",
   "commands.dtf.showactive.true": "DTF MOD is currently set to active",
   "commands.dtf.showactive.false": "DTF MOD is currently set to not active",
+  "_comment.s": "sound",
+  "devilstunefork.subtitle.dtf.usedsound": "Used the Devil's Tuning Fork",
   "_comment.l": "last"
 }

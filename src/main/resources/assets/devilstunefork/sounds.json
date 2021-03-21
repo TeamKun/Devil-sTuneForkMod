@@ -1,0 +1,14 @@
+{
+   "dtf.usedsound": {
+      "subtitle": "devilstunefork.subtitle.dtf.usedsound",
+      "sounds": [
+         "devilstunefork:dtf"
+      ]
+   },
+   "dtf.botu": {
+      "subtitle": "devilstunefork.subtitle.dtf.botu",
+      "sounds": [
+         "devilstunefork:dtf_botu"
+      ]
+   }
+}

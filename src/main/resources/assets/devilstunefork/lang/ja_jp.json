@@ -6,5 +6,7 @@
   "commands.dtf.setactive.false": "DTF MODを無効にしました",
   "commands.dtf.showactive.true": "DTF MODは有効です",
   "commands.dtf.showactive.false": "DTF MODは無効です",
+  "_comment.s": "sound",
+  "devilstunefork.subtitle.dtf.usedsound": "悪魔の音叉を使用した",
   "_comment.l": "last"
 }
