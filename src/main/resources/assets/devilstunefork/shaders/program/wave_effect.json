@@ -1,7 +1,7 @@
 {
   "blend": {
     "func": "add",
-    "srcrgb": "zero",
+    "srcrgb": "dst_color",
     "dstrgb": "src_color"
   },
   "vertex": "devilstunefork:wave_effect",

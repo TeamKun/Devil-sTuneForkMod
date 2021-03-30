@@ -19,9 +19,9 @@ public class RenderHandler {
             WhiteLineRenderer.getInstance().onRender(e);
             WaveRenderer.getInstance().onRender(e);
         }
-        //  if (mc.gameRenderer.getShaderGroup() == null || !mc.gameRenderer.getShaderGroup().getShaderGroupName().equals(blackshader.toString())) {
-        //      mc.gameRenderer.loadShader(blackshader);
-        // }
+     //   if (mc.gameRenderer.getShaderGroup() == null || !mc.gameRenderer.getShaderGroup().getShaderGroupName().equals(blackshader.toString())) {
+     //       mc.gameRenderer.loadShader(blackshader);
+     //   }
     }
 
 }

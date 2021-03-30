@@ -1,7 +1,7 @@
 {
   "blend": {
     "func": "add",
-    "srcrgb": "one",
+    "srcrgb": "src_color",
     "dstrgb": "one"
   },
   "vertex": "devilstunefork:white_line",
