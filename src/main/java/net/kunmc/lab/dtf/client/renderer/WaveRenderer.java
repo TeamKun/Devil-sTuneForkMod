@@ -112,6 +112,7 @@ public class WaveRenderer {
 
         RenderSystem.depthMask(false);
         RenderSystem.disableDepthTest();
+        RenderSystem.disableTexture();
 
         setupMatrices(width, height);
 
@@ -129,6 +130,7 @@ public class WaveRenderer {
         restoreMatrices();
 
         RenderSystem.depthMask(true);
+        RenderSystem.enableTexture();
         RenderSystem.enableDepthTest();
     }
 
