@@ -30,17 +30,17 @@ public class WhiteLineShader {
     private ShaderDefault radiussUniform;
     private ShaderDefault maxRadiussUniform;
 
-    private float[] wavesX = new float[300];
-    private float[] wavesY = new float[300];
-    private float[] wavesZ = new float[300];
-    private float[] radiuss = new float[300];
-    private float[] maxRadiuss = new float[300];
+    private float[] wavesX = new float[150];
+    private float[] wavesY = new float[150];
+    private float[] wavesZ = new float[150];
+    private float[] radiuss = new float[150];
+    private float[] maxRadiuss = new float[150];
 
     public static WhiteLineShader getInstance() {
         return INSTANCE;
     }
     public void removeAll() {
-        IntStream.range(0, 300).forEach(n -> {
+        IntStream.range(0, 150).forEach(n -> {
             removeMaxRadiuss(n);
             removeCenter(n);
             setRadiuss(n, 0);

@@ -6,11 +6,11 @@ uniform vec3 pos;
 uniform float duration;
 uniform sampler2D depthTex;
 
-uniform float maxRadiuss[300];
-uniform float radiuss[300];
-uniform float centerX[300];
-uniform float centerY[300];
-uniform float centerZ[300];
+uniform float maxRadiuss[150];
+uniform float radiuss[150];
+uniform float centerX[150];
+uniform float centerY[150];
+uniform float centerZ[150];
 
 in vec2 texCoord;
 
@@ -41,7 +41,7 @@ void main() {
     float invs=0;
     float whiteInv=0;
 
-    for (int i = 0; i < 300; i++){
+    for (int i = 0; i < 150; i++){
         float dist = distance(pos, vec3(centerX[i], centerY[i], centerZ[i]));
         float ivc=radiuss[i]/maxRadiuss[i];
         float maxDist=radiuss[i] - min(maxRadiuss[i], 400)/125;

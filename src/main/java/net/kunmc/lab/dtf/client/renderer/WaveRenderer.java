@@ -39,7 +39,7 @@ public class WaveRenderer {
 
 
     public void addWave(Vec3d pos, float range, float speed) {
-        for (int i = 0; i < 300; i++) {
+        for (int i = 0; i < 150; i++) {
             if (!wavs.containsKey(i) || wavs.get(i) == null) {
                 Wave wave = new Wave(pos, range, speed);
                 wave.startWave();
