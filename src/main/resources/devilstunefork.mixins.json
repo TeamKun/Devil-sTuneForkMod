@@ -7,6 +7,7 @@
     "ServerWorldMixin"
   ],
   "client": [
+    "client.ClientWorldMixin",
     "client.DebugOverlayGuiMixin",
     "client.MinecraftMixin"
   ],
