@@ -10,7 +10,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class RenderHandler {
     private static final Minecraft mc = Minecraft.getInstance();
-    private static final ResourceLocation blackshader = new ResourceLocation(DevilsTuneFork.MODID, "shaders/post/test1.json");
+  //  private static final ResourceLocation blackshader = new ResourceLocation(DevilsTuneFork.MODID, "shaders/post/test1.json");
     public static boolean actived;
 
     @SubscribeEvent

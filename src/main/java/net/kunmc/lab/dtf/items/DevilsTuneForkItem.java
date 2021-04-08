@@ -21,15 +21,10 @@ public class DevilsTuneForkItem extends Item {
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
         ItemStack itemstack = playerIn.getHeldItem(handIn);
         if (!worldIn.isRemote) {
-            PacketHandler.sendWave(worldIn, playerIn.getPositionVector(), 50, 1.5f, true);
+            PacketHandler.sendWave(worldIn, playerIn.getPositionVector(), 50, 1f, true);
             worldIn.playSound(null, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), DTFSoundEvents.USEDSOUND, SoundCategory.NEUTRAL, 3, 1);
             playerIn.getCooldownTracker().setCooldown(this, 20 * 3);
-        } /*else {
-            if (playerIn.isCrouching()) {
-                playerIn.sendStatusMessage(new StringTextComponent("LWJGL: " + Version.getVersion()), false);
-                playerIn.sendStatusMessage(new StringTextComponent("OpenGL: " + GL11.glGetString(GL11.GL_VERSION)), false);
-            }
-        }*/
+        }
         return ActionResult.resultSuccess(itemstack);
     }
 }
