@@ -19,20 +19,19 @@ public class ActiveToggleCommand {
     }
 
     public static int setActive(CommandSource source, boolean active) {
-        ServerConfig.Active.set(active);
-        PacketHandler.INSTANCE.send(PacketDistributor.ALL.noArg(), new WaveActiveMessage(active));
-        source.sendFeedback(new TranslationTextComponent("commands.dtf.setactive." + active), true);
-        if (active) {
-            for (String onlinePlayerName : source.getServer().getPlayerList().getOnlinePlayerNames()) {
-                ServerPlayerEntity player = source.getServer().getPlayerList().getPlayerByUsername(onlinePlayerName);
-                PlayerUtils.grantAdvancement(new ResourceLocation(DevilsTuneFork.MODID, "recipes/devilstunefork"), player);
+        if (ServerConfig.Active.get() != active) {
+            ServerConfig.Active.set(active);
+            PacketHandler.INSTANCE.send(PacketDistributor.ALL.noArg(), new WaveActiveMessage(active));
+            source.sendFeedback(new TranslationTextComponent("commands.dtf.setactive." + active), true);
+            if (active) {
+                for (String onlinePlayerName : source.getServer().getPlayerList().getOnlinePlayerNames()) {
+                    ServerPlayerEntity player = source.getServer().getPlayerList().getPlayerByUsername(onlinePlayerName);
+                    PlayerUtils.grantAdvancement(new ResourceLocation(DevilsTuneFork.MODID, "recipes/devilstunefork"), player);
+                }
             }
+        }else {
+            source.sendFeedback(new TranslationTextComponent("commands.dtf.alreadyactive." + ServerConfig.Active.get()), true);
         }
-        return 1;
-    }
-
-    public static int showActive(CommandSource source) {
-        source.sendFeedback(new TranslationTextComponent("commands.dtf.showactive." + ServerConfig.Active.get()), true);
         return 1;
     }
 }

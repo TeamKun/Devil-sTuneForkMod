@@ -51,6 +51,10 @@ public class WhiteLineRenderer {
         }
     }
 
+    public void removeAllWave() {
+        wavs.clear();
+    }
+
     public void onRender(RenderWorldLastEvent e) {
         if (depthCopyFbo == 0) {
             createDepthCopyFramebuffer();

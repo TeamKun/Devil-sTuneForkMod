@@ -8,7 +8,7 @@ import net.kunmc.lab.dtf.packet.WaveActiveMessage;
 import net.kunmc.lab.dtf.util.PlayerUtils;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
@@ -32,6 +32,13 @@ public class ServerHandler {
                 PlayerUtils.grantAdvancement(new ResourceLocation(DevilsTuneFork.MODID, "recipes/devilstunefork"), (ServerPlayerEntity) e.getPlayer());
             }
             PacketHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) e.getPlayer()), new WaveActiveMessage(ServerConfig.Active.get()));
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerJoin(LivingSpawnEvent e) {
+        if (!e.getEntity().world.isRemote && e.getEntity() instanceof ServerPlayerEntity) {
+            PacketHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) e.getEntity()), new WaveActiveMessage(ServerConfig.Active.get()));
         }
     }
 }
