@@ -39,6 +39,7 @@ public class WhiteLineShader {
     public static WhiteLineShader getInstance() {
         return INSTANCE;
     }
+
     public void removeAll() {
         IntStream.range(0, 150).forEach(n -> {
             removeMaxRadiuss(n);
@@ -46,6 +47,7 @@ public class WhiteLineShader {
             setRadiuss(n, 0);
         });
     }
+
     public void init() {
         IResourceManager resourceManager = Minecraft.getInstance().getResourceManager();
         Minecraft.getInstance().deferTask(() -> reloadShaders(resourceManager));

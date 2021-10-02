@@ -29,7 +29,7 @@ public class ActiveToggleCommand {
                     PlayerUtils.grantAdvancement(new ResourceLocation(DevilsTuneFork.MODID, "recipes/devilstunefork"), player);
                 }
             }
-        }else {
+        } else {
             source.sendFeedback(new TranslationTextComponent("commands.dtf.alreadyactive." + ServerConfig.Active.get()), true);
         }
         return 1;

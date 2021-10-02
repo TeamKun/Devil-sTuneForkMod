@@ -6,8 +6,10 @@ import net.minecraftforge.fml.network.NetworkEvent;
 import java.util.function.Supplier;
 
 public class WaveActiveMessageHandler {
+    public static boolean ENABLE;
+
     public static void reversiveMessage(WaveActiveMessage message, Supplier<NetworkEvent.Context> ctx) {
         ctx.get().setPacketHandled(true);
-        RenderHandler.actived = message.active;
+        ENABLE = message.active;
     }
 }

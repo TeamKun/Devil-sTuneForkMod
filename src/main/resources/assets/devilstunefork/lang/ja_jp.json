@@ -1,12 +1,12 @@
 {
   "_comment.i": "item",
-  "item.devilstunefork.devilstunefork": "悪魔の音叉",
+  "item.devilstunefork.devilstunefork": "Devil's Tune Fork",
   "_comment.c": "command",
-  "commands.dtf.setactive.true": "DTF MODを有効にしました",
-  "commands.dtf.setactive.false": "DTF MODを無効にしました",
-  "commands.dtf.alreadyactive.true": "DTF MODはすでに有効です",
-  "commands.dtf.alreadyactive.false": "DTF MODはすでに無効です",
+  "commands.dtf.setactive.true": "Devil's Tune Fork Modを有効にしました",
+  "commands.dtf.setactive.false": "Devil's Tune Fork Modを無効にしました",
+  "commands.dtf.alreadyactive.true": "Devil's Tune Fork Modはすでに有効です",
+  "commands.dtf.alreadyactive.false": "Devil's Tune Fork Modはすでに無効です",
   "_comment.s": "sound",
-  "devilstunefork.subtitle.dtf.usedsound": "悪魔の音叉を使用した",
+  "devilstunefork.subtitle.dtf.usedsound": "Devil's Tune Forkを使用した",
   "_comment.l": "last"
 }

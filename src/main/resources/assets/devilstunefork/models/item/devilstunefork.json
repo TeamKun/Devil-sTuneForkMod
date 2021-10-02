@@ -1,6 +1,6 @@
 {
-    "parent": "item/handheld",
-    "textures": {
-        "layer0": "devilstunefork:item/devilstunefork"
-    }
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "devilstunefork:item/devilstunefork"
+  }
 }
